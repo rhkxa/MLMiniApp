@@ -6,6 +6,4 @@
 
 小程序还未上线，页面效果如下：
 
-![01](https://cdn.maliapi.cn/image/20180820-171258.jpg)
-![02](https://cdn.maliapi.cn/image/20180820-214234.jpg)
-![03](https://cdn.maliapi.cn/image/20180820-263713.jpg)
+![01](https://cdn.maliapi.cn/image/20180820171258.jpg) ![02](https://cdn.maliapi.cn/image/20180820214234.jpg) ![03](https://cdn.maliapi.cn/image/20180820263713.jpg)
