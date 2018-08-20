@@ -1,0 +1,131 @@
+<page>
+  <view class="userinfo">
+    <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+    <view class="iser-info-box">
+      <open-data class="userinfo-nickname" type="userNickName"></open-data>
+      <text class="userinfo-score" bindtap="score">积分：{{score}}</text>
+      <text wx:if="{{userInfo && score_sign_continuous == 0}}" class="userinfo-score-day" bindtap="score">今日未签到</text>
+      <text wx:if="{{userInfo && score_sign_continuous > 0}}" class="userinfo-score-day">已连续签到{{score_sign_continuous}}天</text>
+    </view>
+  </view>
+  <view class="view-ui-row">
+    <view class="my-order-box">
+      <view class="border-bottom ui-row" style="height:45px;">
+        <view class="text ui-col" style="padding-left: 20px;">
+          <view class="ui-col-content">我的订单</view>
+        </view>
+        <view class="ui-col valign-middle" style="flex:0 0 30px;">
+          <view class="ui-col-content valign-middle">
+            <span type="arrow-right" color="#27323f" class="ui-icon icon-arrow-right" style="color: #27323f;font-size: 16px;"></span>
+          </view>
+        </view>
+      </view>
+      <navigator url="/pages/pages/user/order/order?id=0" open-type="navigate" hover-class="none"></navigator>
+    </view>
+    <view class="ui-row" style="margin-bottom: 10px;margin-top: 20px;height:50px;">
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list" bindtap="goorderlist" data-index="1">
+            <view wx:if="{{noplay}}" class="red-dot">{{noplay}}</view>
+            <image src="../../../images/user/1.png" />
+            <text>待付款</text>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list" bindtap="goorderlist" data-index="2">
+            <view wx:if="{{notransfer}}" class="red-dot">{{notransfer}}</view>
+            <image src="../../../images/user/2.png" />
+            <text>待发货</text>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list" bindtap="goorderlist" data-index="3">
+            <view wx:if="{{noconfirm}}" class="red-dot">{{noconfirm}}</view>
+            <image src="../../../images/user/3.png" />
+            <text>待收货</text>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list" bindtap="goorderlist" data-index="4">
+            <view wx:if="{{noreputation}}" class="red-dot">{{noreputation}}</view>
+            <image src="../../../images/user/4.png" />
+            <text>待评价</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="user-line"></view>
+    <view class="ui-row-list" style="">
+      <view class="border-bottom ui-row" style="height:45px;">
+        <view class="text ui-col" style="padding-left: 20px;">
+          <view class="ui-col-content">我的服务</view>
+        </view>
+      </view>
+    </view>
+    <view class="ui-row" style="margin-bottom: 12px;margin-top: 25px;height:60px;">
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/9.png" />
+            <text>我的余额</text>
+            <navigator url="/pages/pages/user/paypal/paypal" open-type="navigate" hover-class="none"></navigator>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/10.png" />
+            <text>积分</text>
+            <navigator url="/pages/pages/coupons/score/score" open-type="navigate" hover-class="none"></navigator>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/11.png" />
+            <text>优惠券</text>
+            <navigator url="/pages/pages/user/coupon/coupon" open-type="navigate" hover-class="none"></navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="user-line-small"></view>
+    <view class="ui-row" style="margin-bottom: 12px;margin-top: 25px;height:60px;">
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/12.png" />
+            <text>收藏</text>
+            <navigator url="/pages/pages/user/favorite/favorite" open-type="navigate" hover-class="none"></navigator>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/14.png" />
+            <text>地址</text>
+            <navigator url="/pages/pages/user/address/address" open-type="navigate" hover-class="none"></navigator>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="cart-list cart-list-type">
+            <image src="../../../images/user/15.png" />
+            <text>客服</text>
+            <button open-type="contact" session-from="weapp"></button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</page>

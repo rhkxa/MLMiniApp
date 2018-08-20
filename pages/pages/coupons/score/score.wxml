@@ -1,0 +1,38 @@
+<page>
+  <import src="../../../component/module/module.wxml" />
+  <ui-nav-bar slot="nav-bar" custom-style="{{ {borderBottom:'1px solid rgba(231, 231, 231, 0.6)',backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span type="arrow-left" size="14" color="#27323f" class="ui-icon icon-arrow-left" style="color: #27323f;font-size: 14px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view>积分中心</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <view style="height:{{NAV_HEIGHT}}"></view>
+  <view class="score-header">
+    <view class="score-name">可用积分</view>
+    <view class="score-number">{{amount.score}}</view>
+    <view class="score-times">
+      <view wx:for="{{rules}}" wx:key="rules" class="times-list {{ score_sign_continuous >= item.continuous ? 'item-on':'' }}">
+        <view class="times-score">+{{item.score}}</view>
+        <text class="times-pus"></text>
+        <view class="times-line"></view>
+        <view class="times-day">{{item.continuous}}天</view>
+      </view>
+    </view>
+  </view>
+  <view class="score-center">
+    <view bindtap="{{ci == 0 ? 'scoresign':'error'}}" class="{{ci == 0 ? 'score-btn':'score-btn-none'}}">{{ci == 0 ? '立即签到':'今日已签到'}}</view>
+  </view>
+
+</page>

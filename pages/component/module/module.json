@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ui-badge": "../../../packages/touchui-wx-components/ui-badge/dist/index",
+    "ui-mini-star": "../../../packages/touchui-wx-components/ui-mini-star/dist/index"
+  }
+}

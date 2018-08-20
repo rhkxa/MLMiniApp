@@ -1,0 +1,66 @@
+<page>
+  <import src="../../../component/menu/menu.wxml" />
+  <import src="../../../component/module/module.wxml" />
+  <ui-nav-bar slot="nav-bar" custom-style="{{ {borderBottom:'1px solid rgba(231, 231, 231, 0.6)',backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span type="arrow-left" size="14" color="#27323f" class="ui-icon icon-arrow-left" style="color: #27323f;font-size: 14px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view>我的优惠券</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <view style="height:{{NAV_HEIGHT}}"></view>
+  <view class="swiper_content" wx:if="{{ show_1 }}">
+    <view class="coupon-new-box">
+      <view class="ui-row" style="margin-top: 5px;height:50px;">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="coupon-new-input">
+              <input type="text" placeholder="请输入优惠码" placeholder-style="color: #999" bindinput="listenerCouponsInput" data-id="123"></input>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="flex:0 0 120px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="coupon-new-button" bindtap="listenerDuiHuan">兑换</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="coupon-list-box">
+      <view class="coupon-list" wx:for="{{couponList}}" wx:key="{{index}}">
+        <view class="ui-row" style="height:80px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 100px;">
+            <view class="ui-col-content align-center valign-middle">
+              <view class="coupon-list-price">{{item.money}}
+                <text>元</text>
+              </view>
+            </view>
+          </view>
+          <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+            <view class="ui-col-content align-left valign-middle">
+              <view class="coupon-list-info">满{{item.moneyHreshold}}元减{{item.money}}元券</view>
+              <view class="coupon-list-time">{{startime[item.id]}} - {{endtime[item.id]}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="coupon-list-text">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="swiper_content" wx:if="{{ show_2 }}">选项卡二</view>
+  <view class="swiper_content" wx:if="{{ show_3 }}">选项卡二</view>
+
+</page>

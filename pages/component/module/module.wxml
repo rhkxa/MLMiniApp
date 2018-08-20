@@ -1,0 +1,234 @@
+<page>
+  <template name="goodsbottom">
+    <view class="fixed_bottom ui-row" style="height:50px;">
+      <view class="fixed_bottom_ui-col ui-col ui-col-align-center align-center valign-middle" style="padding-right: 1px;">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="fixed_bottom_box">
+            <image src="../../../images/goods_service.png" />
+            <button open-type="contact" session-from="weapp"></button>
+          </view>
+        </view>
+      </view>
+      <view class="fixed_bottom_ui-col ui-col ui-col-align-center align-center valign-middle" style="padding-right: 1px;">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="fixed_bottom_box" bindtap="goShopCar">
+            <image src="../../../images/shopping_cart.png" />
+            <ui-badge text="{{shopNum}}" custom-style="{{cartStyle}}" _pid="{{_pid}}"></ui-badge>
+          </view>
+        </view>
+      </view>
+      <view class="fixed_bottom_ui-col ui-col ui-col-align-center align-center valign-middle" style="padding-right: 1px;">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="fixed_bottom_box" bindtap="{{favicon == 0 ? 'fav':'del'}}">
+            <image wx:if="{{favicon == 0}}" src="../../../images/goods_collect.png" />
+            <image wx:if="{{favicon == 1}}" src="../../../images/goods_collect_checked.png" />
+          </view>
+        </view>
+      </view>
+      <view class="ui-col valign-middle" style="flex:0 0 118px;">
+        <view class="ui-col-content valign-middle">
+          <view class="form_list_cart" bindtap="toAddShopCar">加入购物车</view>
+        </view>
+      </view>
+      <view class="ui-col valign-middle" style="flex:0 0 120px;">
+        <view class="ui-col-content valign-middle">
+          <view class="form_list_buy" bindtap="tobuy">立即购买</view>
+        </view>
+      </view>
+    </view>
+    <view class="iphonex-bottom"></view>
+  </template>
+  <template name="goodsguige">
+    <view class="column-goods-GuiGe-box ui-row" data-show="{{ true }}" bindtap="openPopup" style="height:66px;">
+      <view class="ui-col" style="padding-left: 10px;">
+        <view class="ui-col-content">
+          <view class="column-content column-goods-GuiGe">{{propertyChildNames ? '已选：'+propertyChildNames:'规格数量选择'}}</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-right align-right" style="padding-right: 10px;flex:0 0 30px;">
+        <view class="ui-col-content align-right">
+          <view class="column-content column-goods-GuiGe-icon">
+            <span type="arrow-right" size="18" color="#C5C5C5" class="ui-icon icon-arrow-right" style="color: #C5C5C5;font-size: 18px;"></span>
+          </view>
+        </view>
+      </view>
+    </view>
+  </template>
+  <template name="reputation">
+    <view class="goods-reputation-box">
+      <view class="reputation-none" wx:if="{{!reputation}}">
+        <image src="../../../images/empty_comment.png" /> 还没有人评价
+      </view>
+      <view class="goods-reputa-list" wx:for="{{reputation}}" wx:key="id">
+        <view class="goods-reputa-avatar">
+          <image class="goods-avatar" src="{{item.user.avatarUrl}}" />
+          <view class="goods-name">{{item.user.nick}}</view>
+          <image class="goods-vip" src="../../../images/vip.png" />
+          <ui-mini-star wx:if="{{item.goods.goodReputationStr=='好评'}}" value="5" _pid="{{_pid}}"></ui-mini-star>
+          <ui-mini-star wx:if="{{item.goods.goodReputationStr=='中评'}}" value="3" _pid="{{_pid}}"></ui-mini-star>
+          <ui-mini-star wx:if="{{item.goods.goodReputationStr=='差评'}}" value="1" _pid="{{_pid}}"></ui-mini-star>
+        </view>
+        <view class="goods-date-Reputation">
+          <view class="dateReputation">{{item.goods.dateReputation}}</view>
+          <view class="goodsName">{{item.goods.property}}</view>
+        </view>
+        <view class="goods-reputa-mark">{{item.goods.goodReputationRemark}}</view>
+      </view>
+    </view>
+  </template>
+  <template name="carttips">
+    <block wx:for="{{carttips}}" wx:key="id">
+      <view class="cart-tip">
+        <i class="icon-cart"></i>{{item}}</view>
+    </block>
+  </template>
+  <template name="basicInfo">
+    <view class="ui-row" style="margin-top: 10px;height:60px;">
+      <view class="ui-col" style="padding-left: 10px;padding-right: 10px;">
+        <view class="ui-col-content">
+          <view class="column-content">
+            <view class="column-goods-title over">{{goodsDetail.basicInfo.name}}</view>
+            <view class="column-goods-risti">{{goodsDetail.basicInfo.characteristic}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="ui-row" style="height:40px;">
+      <view class="ui-col ui-col-7" style="flex: 0 0 58.333333333333336%;padding-left: 10px;padding-right: 5px;">
+        <view class="ui-col-content">
+          <view class="column-content column-price-content">
+            <view class="column-goods-price">¥{{selectSizePrice}}</view>
+            <view class="column-goods-original">¥{{goodsDetail.basicInfo.originalPrice}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col" style="padding-left: 5px;padding-right: 10px;">
+        <view class="ui-col-content">
+          <view class="column-content column-price-content">
+            <view class="column-goods-score">购买最高得45积分</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="ui-row" style="margin-top: 5px;height:38px;">
+      <view class="ui-col" style="padding-left: 10px;padding-right: 10px;">
+        <view class="ui-col-content">
+          <view class="column-content column-vip-content">
+            <image src="../../../images/vip.png" />
+            <view class="column-goods-vip">超级会员价¥99</view>
+            <view class="column-goods-vip-pay">立即开通
+              <i class="vip-right"></i>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </template>
+  <template name="pingtuan">
+    <view wx:if="{{toptuan}}" class="pingtuna-container">
+      <view class="pingtuna-title" bindtap="tapSales" data-id="{{toptuaninfo.remark}}">
+        <text>{{toptuaninfo.value}}</text>
+        <image src="../../../images/home_more.png" />
+      </view>
+      <view class="pingtuna-list" wx:for="{{toptuan}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.businessId}}">
+        <view class="pingtuna-list-title">{{item.title}}</view>
+        <view wx:if="{{item.linkUrl}}" class="pingtuna-list-text">{{item.linkUrl}}</view>
+        <view wx:if="{{item.remark}}" class="pingtuna-list-info">{{item.remark}}</view>
+        <image src="{{item.picUrl}}" />
+      </view>
+    </view>
+  </template>
+  <template name="topgoods">
+    <view wx:if="{{topgoods}}" class="goods-container">
+      <view class="goods-title" bindtap="tapSales" data-id="{{topgoods.remark}}">
+        <text>{{topgoods.value}}</text>
+        <image src="../../../images/home_more.png" />
+      </view>
+      <view class="goods-list" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <image src="{{item.pic}}" />
+        <view class="goods-list-title">{{item.name}}</view>
+        <view class="goods-list-text">{{item.characteristic}}</view>
+        <view class="goods-list-money">Ұ{{item.minPrice}}</view>
+      </view>
+    </view>
+  </template>
+  <template name="searchkey">
+    <view class="show-search-box">
+      <view class="show-search-hot">热门搜索</view>
+      <block wx:for="{{searchTag}}" wx:key="id">
+        <view class="seaech-list" bindtap="getSearch" data-name="{{item}}">{{item}}</view>
+      </block>
+    </view>
+  </template>
+  <template name="searchdata">
+    <view class="show-search-box">
+      <view class="show-search-hot">
+        <text>历史记录</text>
+        <image src="../../../images/delete.png" bindtap="delSearch" />
+      </view>
+      <block wx:for="{{searchdata}}" wx:key="id">
+        <view class="seaech-list" bindtap="getSearch" data-name="{{item.name}}">{{item.name}}</view>
+      </block>
+    </view>
+    <view class="search-line"></view>
+  </template>
+  <template name="no-goods">
+    <view class="title-box">
+      <image class="box-none" src="../../../images/none/cart_empty.png" />
+      <text>购物车空空的</text>
+    </view>
+  </template>
+  <template name="cart-goods-list">
+    <view class="top-edit-btn" hidden="{{!saveHidden}}" bindtap="editTap">编辑</view>
+    <view class="top-edit-btn" hidden="{{saveHidden}}" bindtap="saveTap">完成</view>
+    <view class="goodsList">
+      <view class="a-gooods" wx:for="{{list}}" wx:key="{{index}}">
+        <view class="a-goods-conts {{item.active? 'active':''}}" bindtap="selectTap" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
+          <view class="goods-info">
+            <view class="img-box">
+              <image src="{{item.pic}}" class="img" />
+            </view>
+            <view class="text-box">
+              <view class="goods-title">{{item.name}}</view>
+              <view class="goods-label">{{item.label}}</view>
+              <view class="goods-price">¥ {{item.price}}</view>
+              <view class="buy-num">
+                <view class="jian-btn {{item.number==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+                <input type="number" value="{{item.number}}" disabled></input>
+                <view class="jia-btn {{item.number==10? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</view>
+              </view>
+            </view>
+          </view>
+          <view class="delete-btn" data-index="{{index}}" catchtap="delItem">
+            <span type="delete" size="20" color="#27323f" class="ui-icon icon-delete" style="color: #27323f;font-size: 20px;"></span>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="jiesuan-box">
+      <view class="left-price">
+        <view class="all-selected  {{allSelect?'active':''}}" bindtap="bindAllSelect">全选</view>
+        <view class="total" hidden="{{noSelect}}">合计：¥{{totalPrice}}</view>
+      </view>
+      <view class="to-pay-btn {{noSelect?'no-select':''}}" hidden="{{!saveHidden}}" bindtap="toPayOrder">下单</view>
+      <view class="to-pay-btn {{noSelect?'no-select':''}}" hidden="{{saveHidden}}" bindtap="deleteSelected">删除</view>
+    </view>
+  </template>
+  <template name="guessgoods">
+    <view class="goods-list">
+      <view class="goods-box" wx:for="{{sales}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <view class="img-box">
+          <image src="{{item.pic}}" class="image" />
+          <view class="goods-characteristic">
+            <text>{{item.characteristic}}</text>
+          </view>
+        </view>
+        <view class="goods-title">{{item.name}}</view>
+        <view class="goods-price-box">
+          <view class="goods-price">Ұ{{item.minPrice}}</view>
+          <view class="goods-price-naver">已售{{item.numberOrders}}</view>
+        </view>
+      </view>
+    </view>
+  </template>
+</page>

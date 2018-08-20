@@ -1,0 +1,132 @@
+<page>
+  <import src="../../component/menu/menu.wxml" />
+  <import src="../../component/swiper/swiper.wxml" />
+  <import src="../../component/module/module.wxml" />
+  <import src="../../../static/wxParse/wxParse.wxml" />
+  <ui-nav-bar class="{{navigationbar ? 'hidden':'scrollTop'}}" slot="nav-bar" custom-style="{{ {backgroundColor:'rgba(255,255,255.0)'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span class="goodsicon ui-icon icon-arrow-left" type="arrow-left" size="16" color="#fff" style="color: #fff;font-size: 16px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view></view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <ui-nav-bar class="hidden {{navigationbar}}" slot="nav-bar" custom-style="{{ {backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span type="arrow-left" size="16" color="#27323f" class="ui-icon icon-arrow-left" style="color: #27323f;font-size: 16px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="goods-tabbar-title">{{goodsDetail.basicInfo.name}}</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <template is="goodswiper" data="{{swiper:goodsDetail.pics,swiperCurrent:swiperCurrent,number:picsnumber}}" />
+  <template is="basicInfo" data="{{goodsDetail:goodsDetail,selectSizePrice:selectSizePrice}}" />
+  <template is="goodsguige" data="{{propertyChildNames:propertyChildNames}}" />
+  <ui-sticky scroll-top="{{ scrollTop }}" top="{{NAV_HEIGHT}}" _pid="{{_pid}}">
+    <ui-tabs class="goods-content-tap" index="{{ current }}" probe="1" active-tab-style="{{activeTabStyle}}" bindchange="handleChange" _pid="{{_pid}}">
+      <ui-tab class="goods-content-tap-btn" _pid="{{_pid}}">商品详情</ui-tab>
+      <ui-tab class="goods-content-tap-btn" _pid="{{_pid}}">客户评价
+        <ui-badge wx:if="{{goodsDetail.basicInfo.numberGoodReputation}}" text="{{ goodsDetail.basicInfo.numberGoodReputation }}" custom-style="{{customStyle}}" _pid="{{_pid}}"></ui-badge>
+      </ui-tab>
+    </ui-tabs>
+    <view slot="sticky">
+      <ui-tabs tab-style="{{ {width:width/2+'px !important'} }}" class="goods-content-tap" index="{{ current }}" probe="1" active-tab-style="{{activeTabStyle}}" bindchange="handleChange" _pid="{{_pid}}">
+        <ui-tab class="goods-content-tap-btn" _pid="{{_pid}}">商品详情</ui-tab>
+        <ui-tab class="goods-content-tap-btn" _pid="{{_pid}}">客户评价
+          <ui-badge wx:if="{{goodsDetail.basicInfo.numberGoodReputation}}" text="{{ goodsDetail.basicInfo.numberGoodReputation }}" custom-style="{{customStyle}}" _pid="{{_pid}}"></ui-badge>
+        </ui-tab>
+      </ui-tabs>
+    </view>
+  </ui-sticky>
+  <view class="swiper_content" wx:if="{{ show1 }}">
+    <view class="goods-wxparse-box">
+      <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+    </view>
+  </view>
+  <view class="swiper_content" wx:if="{{ show2 }}">
+    <template is="reputation" data="{{reputation:reputation}}" />
+  </view>
+  <ui-fixed-view bottom="0" left="0" right="0" _pid="{{_pid}}">
+    <template is="goodsbottom" data="{{shopNum:shopNum,favicon:favicon,cartStyle:cartStyle}}" />
+  </ui-fixed-view>
+  <ui-popup show="{{ show }}" position="bottom" _pid="{{_pid}}">
+    <view class="ui-row" style="height:100px;">
+      <view class="ui-col ui-col-3 ui-col-align-center align-center valign-middle" style="flex: 0 0 25%;">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="pop-img-box">
+            <image src="{{goodsDetail.basicInfo.pic}}" class="goods-thumbnail" />
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="pop-goods-des">
+            <view class="pop-goods-title">{{goodsDetail.basicInfo.name}}</view>
+            <view class="pop-goods-price">¥{{selectSizePrice}}</view>
+            <view class="pop-goods-guige">{{propertyChildNames ? '已选：'+propertyChildNames:'请选择规格属性'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="goodsDetail-propertychild-box">
+      <block wx:for="{{goodsDetail.properties}}" wx:for-item="property" wx:for-index="idx" wx:key="id">
+        <view class="size-label-box ui-row" style="">
+          <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+            <view class="ui-col-content align-left valign-middle">
+              <view class="good-property-name-popup">{{property.name}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="label-item-box">
+          <view class="label-item {{item.active ? 'active' : '' }}" wx:for="{{property.childsCurGoods}}" wx:key="id" bindtap="labelItemTap" data-propertyindex="{{idx}}" data-propertyid="{{property.id}}" data-propertyname="{{property.name}}" data-propertychildindex="{{index}}" data-propertychildid="{{item.id}}" data-propertychildname="{{item.name}}">
+            {{item.name}}
+          </view>
+        </view>
+      </block>
+      <view class="size-label-box ui-row" style="">
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="good-property-name-popup">数量</view>
+          </view>
+        </view>
+      </view>
+      <view class="label-stepper-box">
+        <ui-stepper max="{{buyNumMax}}" min="1" corner="butt" height="32" width="110" bindaddition="numJiaTap" _pid="{{_pid}}"></ui-stepper>
+      </view>
+    </view>
+    <ui-fixed-view bottom="0" left="0" right="0" _pid="{{_pid}}">
+      <view class="fixed_bottom fixed_bottom_popup ui-row" style="height:50px;">
+        <view class="ui-col valign-middle" style="">
+          <view class="ui-col-content valign-middle">
+            <view class="form_list_cart" bindtap="addShopCar">加入购物车</view>
+          </view>
+        </view>
+        <view class="ui-col valign-middle" style="">
+          <view class="ui-col-content valign-middle">
+            <view class="form_list_buy" bindtap="buyNow">立即购买</view>
+          </view>
+        </view>
+      </view>
+    </ui-fixed-view>
+  </ui-popup>
+</page>

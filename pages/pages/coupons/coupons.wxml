@@ -1,0 +1,77 @@
+<page>
+  <import src="../../component/menu/menu.wxml" />
+  <import src="../../component/swiper/swiper.wxml" />
+  <import src="../../component/module/module.wxml" />
+  <ui-nav-bar slot="nav-bar" custom-style="{{ {borderBottom:'1px solid rgba(231, 231, 231, 0.6)',backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view bindtap="navigateBack" class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+          <span type="arrow-left" size="14" color="#27323f" class="ui-icon icon-arrow-left" style="color: #27323f;font-size: 14px;"></span>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view>领券中心</view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 60px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <view style="height:{{NAV_HEIGHT}}"></view>
+  <view class="coupons-box" wx:for="{{coupons}}" wx:key="id">
+    <view class="ui-row" style="height:130px;">
+      <view class="ui-col ui-col-4" style="flex: 0 0 33.33333333333333%;padding-right: 5px;">
+        <view class="ui-col-content">
+          <view class="coupons-image">
+            <image src="../../../images/share.png" />
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-8" style="flex: 0 0 66.66666666666666%;">
+        <view class="ui-col-content">
+          <view class="ui-row" style="height:20px;">
+            <view class="ui-col" style="">
+              <view class="ui-col-content">
+                <view class="coupons-title">满{{item.moneyHreshold}}减{{item.money}}元券</view>
+              </view>
+            </view>
+          </view>
+          <view class="ui-row" style="">
+            <view class="ui-col" style="">
+              <view class="ui-col-content">
+                <view class="coupons-goods">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="ui-row" style="">
+            <view class="ui-col" style="">
+              <view class="ui-col-content">
+                <view class="coupons-times">有效期:2018-08-08</view>
+              </view>
+            </view>
+          </view>
+          <view class="ui-row" style="">
+            <view class="ui-col" style="">
+              <view class="ui-col-content">
+                <view class="coupons-slider">
+                  <slider value="30" block-size="12" min="0" max="{{item.numberTotle}}" activeColor="#ffd305" disabled active-color="#ffd305">
+                    <text>已经领取30%</text>
+                  </slider>
+                </view>
+              </view>
+            </view>
+            <view class="ui-col ui-col-align-center align-center" style="">
+              <view class="ui-col-content align-center">
+                <view class="coupons-button" bindtap="getCouponsTap" data-id="{{item.id}}">立即领取</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</page>

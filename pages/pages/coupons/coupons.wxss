@@ -1,0 +1,85 @@
+/* 1像素解决方案 */
+/*
+ * 清除1px
+ */
+/*
+ * 清除浮动
+ */
+/*
+ * mobile
+ */
+/*
+ * 1px
+ */
+/*
+ * text
+ */
+/* 垂直居中 */
+/* 水平居中 */
+/* 水平垂直居中 */
+/* 超出部分出省略号 */
+/* 多行文本超出部分省略号 */
+.coupons-box {
+  background-color: #fefefe;
+  border-bottom: 2rpx solid #f2f2f2;
+  border-top: 2rpx solid #f2f2f2;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.coupons-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coupons-image image {
+  width: 200rpx;
+  height: 200rpx;
+}
+.coupons-title {
+  font-size: 30rpx;
+  color: #27323f;
+  font-weight: 800;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.coupons-goods {
+  color: #27323f;
+  font-size: 28rpx;
+  margin-top: 6rpx;
+}
+.coupons-times {
+  font-size: 24rpx;
+  margin-top: -4rpx;
+  color: #7b8196;
+}
+.coupons-slider {
+  margin-top: -24rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.coupons-slider slider {
+  margin: 0;
+  width: 75%;
+}
+.coupons-slider text {
+  color: #ffd305;
+  font-size: 24rpx;
+}
+.coupons-button {
+  width: 180rpx;
+  height: 60rpx;
+  background-color: #ffd305;
+  color: #27323f;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20rpx;
+  border-radius: 6rpx;
+}
+.column-content {
+  background-color: #eee;
+}
