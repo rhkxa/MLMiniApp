@@ -1,5 +1,4 @@
 <page>
-  <import src="../../../component/menu/menu.wxml" />
   <import src="../../../component/module/module.wxml" />
   <ui-nav-bar slot="nav-bar" custom-style="{{ {backgroundColor:'#fff'} }}" _pid="{{_pid}}">
     <view class="ui-row" style="height:46px;">

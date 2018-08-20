@@ -1,5 +1,4 @@
 <page>
-  <import src="../../component/menu/menu.wxml" />
   <import src="../../component/swiper/swiper.wxml" />
   <import src="../../component/module/module.wxml" />
   <import src="../../../static/wxParse/wxParse.wxml" />
